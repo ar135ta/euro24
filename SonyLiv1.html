@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600&amp;display=swap"
+        rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
+    <link rel="icon" type="image/png" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFjTqlXQNfqcM2sqYSXlcHsFm8FKReW8FDIQ&s"
+        sizes="128x128" style="border-radius: 5px;">
+    <title>SonyLiv_1</title>
+    <style>
+        html,
+        body {
+            font-family: "Onest", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("webpa/EuroWd2.png");
+            background-size: cover;
+            /* Optional: adjust based on your design */
+            background-attachment: fixed;
+            /* Makes the background image fixed */
+            overflow: auto;
+            overflow-x: hidden;
+            /* Allow vertical and horizontal scrolling */
+        }
+
+        /* Media query for mobile devices */
+        @media only screen and (max-width: 768px) {
+            body {
+                background-image: url("webpa/EuroPot.png");
+                /* Set aspect ratio to 9:16 */
+                background-size: fixed;
+                padding: 8px;
+            }
+        }
+
+        /* Custom scrollbar */
+        body::-webkit-scrollbar {
+            width: 8px;
+            /* Width of the scrollbar */
+            border-radius: 5px;
+            /* Rounded corners */
+        }
+
+        body::-webkit-scrollbar-track {
+            backdrop-filter: blur(10px);
+            /* Apply blur effect */
+        }
+
+        body::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            /* Rounded corners for the thumb */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Add shadow */
+            background-color: rgba(140, 140, 140, 0.308);
+            /* Thumb color */
+            transition: background-color 0.3s ease;
+            /* Smooth transition */
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.7);
+            /* Darker thumb color on hover */
+        }
+
+        /* Hide scrollbar after 3 seconds */
+        body.hide-scrollbar::-webkit-scrollbar {
+            scrollbar-width: thin;
+        }
+
+        body.hide-scrollbar::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            /* Hide thumb */
+        }
+
+        body.hide-scrollbar:hover::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, 0.7);
+            /* Show thumb on hover */
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            /* Adjust blur strength as needed */
+            background-color: rgba(51, 51, 51, 0.098);
+            /* Adjust background color and opacity */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow: hidden;
+        }
+
+        header img {
+            max-width: auto;
+            height: auto;
+            max-height: 35px;
+            /* filter: brightness(0) grayscale(1) invert(1) sepia(1) saturate(1) hue-rotate(300deg); */
+        }
+
+        #container {
+            font-family: 'Titillium Web', sans-serif;
+            color: white;
+            padding: 10px;
+            background-color: #333;
+            margin-right: 8px;
+            margin-left: 5px;
+            margin: 0 auto;
+            backdrop-filter: blur(10px);
+            /* Adjust blur strength as needed */
+            background-color: rgba(51, 51, 51, 0.098);
+            /* Adjust background color and opacity */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            overflow-y: auto;
+        }
+
+        /* Media query for larger screens (desktop) */
+        @media only screen and (min-width: 601px) {
+            #container {
+                max-width: 70%;
+                /* Set width to 80% for desktop */
+            }
+        }
+
+        #player-container {
+            border-radius: 10px;
+            overflow: hidden;
+            /* Center align the container */
+            margin: 0 auto;
+            /* Set initial width to 100% for mobile */
+            max-width: 90%;
+        }
+
+        #video {
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%;
+            /* 16:9 aspect ratio (9 / 16 * 100) */
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .watermark {
+            font-family: 'Titillium Web', sans-serif;
+            position: baseline;
+            /* Set distance from bottom of viewport */
+            text-align: right;
+            margin-right: 10px;
+            font-size: 14px;
+            color: white;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 9999;
+        }
+
+        /* Position the footer at the bottom */
+        footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            backdrop-filter: blur(10px);
+            /* Adjust blur strength as needed */
+            background-color: rgba(51, 51, 51, 0.098);
+            /* Adjust background color and opacity */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            max-width: 100%;
+            overflow: hidden;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        h1,
+        h2,
+        h3 {
+            margin: 0 0 10px;
+        }
+
+        h1 {
+            font-size: 1.7rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+        }
+
+        h3 {
+            color: white;
+            font-size: 1.3rem;
+        }
+
+        a {
+            color: red;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        p {
+            text-align: justify;
+        }
+
+        ul,
+        li {
+            font-size: 16px;
+            text-align: justify;
+        }
+
+      /* Style for the KadalTV Home */
+      .float-home {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 80px;
+        height: 80px;
+        background-color: black;
+        border-radius: 25px 25px 60px 60px;
+        box-shadow: 2px 2px 10px #666;
+        text-align: center;
+      }
+
+      /* Estilo para la imagen de la casa */
+      .float-home img {
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+      }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.5);
+            }
+
+            80% {
+                box-shadow: 0 0 0 14px rgba(0, 136, 204, 0);
+            }
+        }
+
+        .telegram-icon svg {
+            fill: #fff;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+    <script src="https://ssl.p.jwpcdn.com/player/v/8.32.1/jwplayer.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <header>
+        <img alt="Jio TV" id="top-image" src="https://pbs.twimg.com/profile_images/1624744547489320960/b5gXEm8B_400x400.jpg" />
+    </header>
+
+    <div id="container">
+        <div id="player-container">
+          <script type="text/javascript">
+            jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
+  
+            function playVideo(videoUrl, imageUrl, autoplay) {
+              jwplayer("player-container").setup({
+                aspectratio: '16:9',
+                width: '100%',
+                file: videoUrl,
+                image: imageUrl,
+                autostart: true,
+                captions: { color: '#ffb800', fontSize: 30, backgroundOpacity: 0 },
+                abouttext: 'KadalTV',
+                aboutlink: 'https://linktr.ee/ultrawebs',
+                logo: { file: '', position: 'bottom-right' },<!--https://i.imgur.com/ugEOI6d.png-->
+                sharing: {
+                  sites: ['facebook', 'twitter', 'tumblr', 'googleplus', { icon: 'https://i.imgur.com/PL7Vp6K.png', src: 'http://www.jwplayer.com/?', label: 'jwplayer' }],
+                },
+                fullscreen: {
+                  enabled: true,
+                  displayLabel: true,
+                  label: 'Exit Fullscreen',
+                },
+                playbackRateControls: true // Enable playback speed controls
+              });
+            }
+  
+            playVideo('https://jiotv69.nayeem-parvez.workers.dev/bpk-tv/Ten_HD_MOB/Fallback/index.m3u8', 'https://mediabrief.com/wp-content/uploads/2021/07/Image-sonyliv-euro-2020-14mn-hours-of-streaming-MediaBref.png', true);
+          </script>
+        </div>
+
+        <h3>Larangan</h3>
+        <ul>
+            <li>
+                KADALTV untuk Kalangan Menengah ke Bawah, Menengah ke Atas Beli Paket EURO ae Jo......
+            </li>
+            <li>
+                Ora Usah di UMBAR, Ora Usah PAMER 
+            </li>
+            <li>
+                OJO LALI SHOLAT
+            </li>
+        </ul>
+        <div class="watermark">Created by KadalTV</div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity=" strict" crossorigin="anonymous"></script>
+
+    <footer>SonyLiv | by KadalTV</footer>
+
+  <!-- KadalTV Home -->
+  <a href="https://ar135ta.github.io/kadaltv.html" class="float-home">
+    <img src="https://kadaltv.github.io/logo/K_Home/homely.png" alt="KadalTV_Home">
+  </a>
+
+</body>
+<script>
+    // Function to prevent right-click menu
+    document.addEventListener("contextmenu", function (e) {
+        e.preventDefault();
+    });
+
+    // Function to prevent keyboard shortcuts
+    document.onkeydown = function (e) {
+        // Disable F12 key
+        if (event.keyCode == 123) {
+            return false;
+        }
+        // Disable Ctrl+Shift+I key combination
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+            return false;
+        }
+        // Disable Ctrl+Shift+J key combination
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+            return false;
+        }
+        // Disable Ctrl+Shift+U key combination
+        if (e.ctrlKey && e.shiftKey && e.keyCode == 'U'.charCodeAt(0)) {
+            return false;
+        }
+        // Disable Ctrl+C key combination
+        if (e.ctrlKey && e.keyCode == 'C'.charCodeAt(0)) {
+            return false;
+        }
+    };
+</script>
+
+</html>
